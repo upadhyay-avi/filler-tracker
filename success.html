@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,83 +9,105 @@
         /* This line was missing! It imports the correct font */
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
 
-        body { 
-            font-family: 'Inter', system-ui, -apple-system, sans-serif; 
-            background: #f8fafc; 
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
-            height: 100vh; 
-            margin: 0; 
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background: #f8fafc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
             color: #0f172a;
         }
-        
-        .card { 
-            background: white; 
-            padding: 40px; 
-            border-radius: 16px; 
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05); 
-            text-align: center; 
-            max-width: 500px; 
+
+        .card {
+            background: white;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            max-width: 500px;
             border: 1px solid #e2e8f0;
         }
-        
-        h1 { 
-            color: #10b981; 
-            margin-bottom: 10px; 
+
+        h1 {
+            color: #10b981;
+            margin-bottom: 10px;
             font-weight: 800;
         }
-        
+
         p {
             color: #64748b;
             line-height: 1.6;
             margin-bottom: 15px;
         }
-        
-        .details { 
-            background: #f8fafc; 
-            padding: 20px; 
-            border-radius: 8px; 
-            margin: 25px 0; 
-            text-align: left; 
+
+        .details {
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 25px 0;
+            text-align: left;
             border: 1px solid #e2e8f0;
         }
-        
+
         .details p {
             color: #0f172a;
             margin: 8px 0;
             font-size: 15px;
         }
-        
-        .btn { 
-            background: #4f46e5; 
-            color: white; 
-            padding: 14px 28px; 
-            text-decoration: none; 
-            border-radius: 8px; 
-            font-weight: 600; 
-            display: inline-block; 
+
+        .btn {
+            background: #4f46e5;
+            color: white;
+            padding: 14px 28px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            display: inline-block;
             margin-top: 10px;
             transition: background 0.2s, transform 0.2s;
         }
-        
+
         .btn:hover {
             background: #4338ca;
             transform: translateY(-2px);
         }
     </style>
+
+    <!-- Meta Pixel Code -->
+    <script>
+        !function (f, b, e, v, n, t, s) {
+            if (f.fbq) return; n = f.fbq = function () {
+                n.callMethod ?
+                n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            };
+            if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+            n.queue = []; t = b.createElement(e); t.async = !0;
+            t.src = v; s = b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t, s)
+        }(window, document, 'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '2803810696636275');
+        fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+            src="https://www.facebook.com/tr?id=2803810696636275&ev=PageView&noscript=1" /></noscript>
+    <!-- End Meta Pixel Code -->
 </head>
+
 <body>
     <div class="card">
         <h1>Payment Successful! 🎉</h1>
         <p>Thank you for registering. Here is how you can reach me to schedule your custom setup and consultation:</p>
-        
+
         <div class="details">
             <p><strong>Email:</strong> upadhyayavi127@gmail.com</p>
             <p><strong>Phone / WhatsApp:</strong> +91 8303444549</p>
         </div>
-        
+
         <a href="https://wa.me/918303444549" class="btn" target="_blank">Chat on WhatsApp Now</a>
     </div>
 </body>
+
 </html>
