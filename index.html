@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filler & Tracker | Custom Document Automation</title>
+	<link rel="icon" type="image/svg" href="favicon.svg">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap');
+
+        :root {
+            --primary: #4f46e5;
+            --primary-hover: #4338ca;
+            --brand-accent: #10b981; 
+            --brand-accent-hover: #059669;
+            --bg-color: #f8fafc;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            background: white;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        .nav-cta {
+            background: var(--text-main);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+
+        .nav-cta:hover {
+            background: #334155;
+        }
+		
+		/* NEW CSS for Header Links */
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .nav-links a:not(.nav-cta) {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 600; /* Made slightly bolder to highlight them naturally */
+            font-size: 15px;
+            transition: all 0.2s;
+            display: flex;       /* Aligns icon and text */
+            align-items: center; /* Centers them vertically */
+            gap: 6px;            /* Adds space between icon and text */
+        }
+
+        .nav-links a:not(.nav-cta):hover {
+            color: var(--primary);
+            transform: translateY(-1px); /* Adds a tiny "lift" effect when hovered */
+        }
+
+        /* Update Mobile View for the Nav */
+        @media (max-width: 768px) {
+            nav {
+                flex-wrap: wrap;
+                gap: 15px;
+                justify-content: center;
+            }
+            .nav-links {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        /* -------------------------------------
+           NEW TWO-COLUMN HERO SECTION
+           ------------------------------------- */
+        .hero-section {
+            padding: 80px 5% 60px;
+            background: var(--bg-color);
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .hero-text {
+            flex: 1;
+        }
+
+        .hero-text h1 {
+            font-size: 48px;
+            font-weight: 800;
+            line-height: 1.15;
+            margin-bottom: 24px;
+            letter-spacing: -1px;
+            color: var(--text-main);
+        }
+
+        .hero-text p {
+            font-size: 18px;
+            color: var(--text-muted);
+            margin-bottom: 32px;
+        }
+
+        .btn-large {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 16px 32px;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 600;
+            text-decoration: none;
+            box-shadow: 0 4px 6px rgba(79, 70, 229, 0.2);
+            transition: transform 0.2s, background 0.2s;
+        }
+
+        .btn-large:hover {
+            transform: translateY(-2px);
+            background: var(--primary-hover);
+        }
+
+        .hero-image-col {
+            flex: 1.2; /* Gives the image slightly more room than the text */
+        }
+
+        .hero-image {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            border: 1px solid #e2e8f0;
+            display: block;
+        }
+
+        /* The Story Section */
+        .story-section {
+            background: white;
+            padding: 80px 5%;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .story-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .story-image-col {
+            flex: 0 0 350px;
+        }
+
+        .story-image {
+            width: 100%;
+            height: auto;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            object-fit: cover;
+            aspect-ratio: 4/5;
+        }
+
+        .story-content {
+            flex: 1;
+        }
+
+        .story-content h2 {
+            font-size: 32px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            color: var(--text-main);
+        }
+
+        .story-content p {
+            font-size: 16px;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+        }
+
+        .story-content p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .highlight-text {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        /* Visual Flow Section (Screenshots) */
+        .showcase {
+            background: var(--bg-color);
+            padding: 80px 5%;
+            border-top: 1px solid #e2e8f0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 32px;
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-muted);
+            margin-bottom: 60px;
+            font-size: 18px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .flow-container {
+            max-width: 1200px;
+            margin: 0 auto 80px;
+        }
+
+        .flow-title {
+            font-size: 24px;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .flow-title span {
+            background: var(--primary);
+            color: white;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .flow-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .step-card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid #cbd5e1;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+            display: flex;
+            flex-direction: column;
+            height: 100%; /* Forces cards to stretch equally */
+        }
+
+        .step-card img {
+            width: 100%;
+            height: 260px; /* Forces all image areas to be exactly the same height */
+            object-fit: contain; /* Ensures images aren't cropped or stretched */
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+            margin-bottom: 16px;
+            background: #f8fafc;
+        }
+
+        .zoomable-img {
+            cursor: zoom-in;
+            transition: opacity 0.2s;
+        }
+        
+        .zoomable-img:hover {
+            opacity: 0.8;
+        }
+
+        .modal {
+            display: none; 
+            position: fixed; 
+            z-index: 200; 
+            padding-top: 50px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9); 
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: auto;
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+            animation: zoom 0.3s;
+        }
+
+        @keyframes zoom {
+            from {transform:scale(0)} 
+            to {transform:scale(1)}
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 60px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .modal-close:hover {
+            color: #bbb;
+        }
+
+        .step-card h4 {
+            font-size: 16px;
+            margin-bottom: 8px;
+            color: var(--text-main);
+        }
+
+        .step-card p {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* Contact / Pricing Section */
+        .pricing-section {
+            padding: 80px 20px;
+            text-align: center;
+            background: white;
+        }
+
+        .pricing-card {
+            background: var(--bg-color);
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 50px;
+            border-radius: 24px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border: 1px solid #e2e8f0;
+        }
+
+        .price {
+            font-size: 56px;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-bottom: 10px;
+        }
+
+        .price span {
+            font-size: 20px;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin: 30px 0;
+            text-align: left;
+        }
+
+        .pricing-features li {
+            padding: 10px 0;
+            border-bottom: 1px solid #e2e8f0;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .pricing-features li:before {
+            content: '✓';
+            color: var(--brand-accent);
+            font-weight: bold;
+        }
+
+        .btn-checkout {
+            display: block;
+            width: 100%;
+            background: var(--primary);
+            color: white;
+            padding: 18px;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.2s;
+            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.2);
+        }
+
+        .btn-checkout:hover {
+            transform: translateY(-2px);
+            background: var(--primary-hover);
+            box-shadow: 0 6px 16px rgba(79, 70, 229, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-muted);
+            font-size: 14px;
+            background: var(--text-main);
+            color: white;
+        }
+        
+        .footer-links {
+            margin-top: 15px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        .footer-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        /* Responsive Layouts */
+        @media (max-width: 900px) {
+            .hero-container,
+            .story-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            .hero-text h1 {
+                font-size: 38px;
+            }
+            .story-image-col {
+                flex: 0 0 auto;
+                width: 100%;
+                max-width: 400px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-text h1 { font-size: 32px; }
+            .pricing-card { padding: 30px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo" style="display: flex; align-items: center; gap: 10px;">
+            <svg width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8 3C6.34315 3 5 4.34315 5 6V26C5 27.6569 6.34315 29 8 29H24C25.6569 29 27 27.6569 27 26V11L19 3H8Z" fill="#EEF2FF" stroke="#4F46E5" stroke-width="2.5" stroke-linejoin="round"/>
+                <path d="M19 3V11H27" stroke="#4F46E5" stroke-width="2.5" stroke-linejoin="round"/>
+                <path d="M10 21L14 16L17 19L22 13" stroke="#10B981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="22" cy="13" r="2.5" fill="#10B981"/>
+            </svg>
+            <div>Filler <span>&</span> Tracker</div>
+        </div>
+        
+        <div class="nav-links">
+            
+            <a href="https://www.facebook.com/profile.php?id=61575490703604" target="_blank" rel="noopener noreferrer">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                </svg>
+                Facebook
+            </a>
+
+            <a href="https://upadhyay-avi.github.io/myPortfolio/" target="_blank" rel="noopener noreferrer">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="2" y1="12" x2="22" y2="12"></line>
+                    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                </svg>
+                Portfolio
+            </a>
+            
+            <a href="#checkout" class="nav-cta">Contact Me</a>
+        </div>
+    </nav>
+
+    <header class="hero-section">
+        <div class="hero-container">
+            <div class="hero-text">
+                <h1>Stop re-typing documents. Automate your workflow.</h1>
+                <p>A serverless, browser-based engine that maps your data onto exact-fit pdfs/images/docs locally, and tracks every generated document directly in Google Sheets.</p>
+                <a href="#checkout" class="btn-large">Get Custom Setup</a>
+            </div>
+            
+            <div class="hero-image-col">
+                <img src="ro-app.png" alt="Web Application Interface" class="hero-image">
+            </div>
+        </div>
+    </header>
+
+    <section class="story-section">
+        <div class="story-container">
+            <div class="story-image-col">
+                <img src="profile.webp" alt="Developer Portrait" class="story-image">
+            </div>
+            <div class="story-content">
+                <h2>Why I built this.</h2>
+                <p>While working at an Advertising Company, a traditional ad agency handling newspaper publications, I witnessed a massive workflow bottleneck. The team was manually generating dozens of daily Release Orders using CorelDraw and tracking them in physical paper registers.</p>
+                <p>This manual process led to frequent errors, duplicated RO numbers, and significant delays. Furthermore, late-night ad placements required someone to physically boot up a PC to draft the documents—a huge waste of time in the modern digital age.</p>
+                <p>I searched for an online solution, but the existing SaaS products were bloated and <span class="highlight-text">far too expensive for a small business</span>. They didn't want another recurring monthly bill.</p>
+                <p>So, I built this custom, serverless web application for them from scratch. Now, their team can instantly generate, correct, and track pixel-perfect release orders from anywhere, even directly from their mobile phones.</p>
+                <p>I understand the burden of expensive software subscriptions on small businesses. That's why I am offering to set up and customize this exact system for your business for a minimal, one-time flat fee.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="showcase">
+        <h2 class="section-title">See It In Action</h2>
+        <p class="section-subtitle">From raw templates to tracked data in seconds.</p>
+
+        <div class="flow-container">
+            <h3 class="flow-title"><span>1</span> The Generation Loop</h3>
+            <div class="flow-grid">
+                
+                <div class="step-card">
+                    <img src="empty-pdf.png" alt="Empty PDF Template" class="zoomable-img">
+                    <h4>1. Empty Template</h4>
+                    <p>Start with your standard blank PDF. The app reads the coordinate map automatically.</p>
+                </div>
+
+                <div class="step-card">
+                    <img src="filled-form.png" alt="Web App Data Entry UI" class="zoomable-img">
+                    <h4>2. Smart Data Entry</h4>
+                    <p>Enter data into the clean web UI. Retain recurring data with smart toggles.</p>
+                </div>
+
+                <div class="step-card">
+                    <img src="filled-pdf.png" alt="Filled PDF Result" class="zoomable-img">
+                    <h4>3. Pixel-Perfect Result</h4>
+                    <p>The PDF is generated instantly, ready to download or share natively on mobile.</p>
+                </div>
+
+                <div class="step-card">
+                    <img src="sheet.png" alt="Google Sheets Tracker" class="zoomable-img">
+                    <h4>4. Auto-Tracked</h4>
+                    <p>Data is synced in the background to your Google Sheet with an auto-incrementing ID.</p>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="flow-container" style="margin-bottom: 0;">
+            <h3 class="flow-title"><span>2</span> Smart Correction Mode</h3>
+            <div class="flow-grid" style="grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));">
+                
+                <div class="step-card">
+                    <img src="correction-mode.png" alt="Search by ID Interface" class="zoomable-img">
+                    <h4>Fetch Existing Data</h4>
+                    <p>Enter a previously generated Document ID to fetch the exact data from Google Sheets.</p>
+                </div>
+
+                <div class="step-card">
+                    <img src="corrected-pdf.png" alt="Updated PDF" class="zoomable-img">
+                    <h4>Edit & Re-Generate</h4>
+                    <p>Fix typos, then hit generate. The PDF is re-created and the specific row is updated automatically.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="checkout" class="pricing-section">
+        <h2 class="section-title">Contact Me</h2>
+        <p class="section-subtitle">This is just small fee for making sure only actually interested people contact me, it will be adjusted in the final payment.</p>
+        
+        <div class="pricing-card">
+            <div class="price">₹99/-<span>per consultation</span></div>
+            
+            <ul class="pricing-features">
+                <li>Direct access to my personal email & WhatsApp</li>
+                <li>1-on-1 discovery call to discuss your workflow</li>
+                <li>Live demo of the application</li>
+                <li>Custom quote for adapting this tool to your PDFs</li>
+            </ul>
+
+            <a href="https://buy.stripe.com/test_your_link_here" class="btn-checkout">
+                Pay Fee & Schedule a Call
+            </a>
+            <p style="font-size: 12px; color: #94a3b8; margin-top: 15px;">Secure payment powered by Stripe.</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 PDF Filler & Tracker. Engineered for efficiency.</p>
+        <div class="footer-links">
+            <a href="https://www.facebook.com/profile.php?id=61575490703604" target="_blank" rel="noopener noreferrer">Facebook</a>
+            <a href="https://upadhyay-avi.github.io/myPortfolio/" target="_blank" rel="noopener noreferrer">Portfolio Website</a>
+        </div>
+    </footer>
+	
+	<div id="imageModal" class="modal">
+        <span class="modal-close">&times;</span>
+        <img class="modal-content" id="modalImg">
+    </div>
+
+    <script>
+        const modal = document.getElementById("imageModal");
+        const modalImg = document.getElementById("modalImg");
+        const closeSpan = document.getElementsByClassName("modal-close")[0];
+        const zoomableImages = document.querySelectorAll('.zoomable-img');
+
+        zoomableImages.forEach(img => {
+            img.onclick = function(){
+                modal.style.display = "flex";
+                modalImg.src = this.src;
+                document.body.style.overflow = 'hidden'; // Prevents background scrolling
+            }
+        });
+
+        function closeModal() {
+            modal.style.display = "none";
+            document.body.style.overflow = '';
+        }
+
+        closeSpan.onclick = closeModal;
+
+        modal.onclick = function(event) {
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+        
+        document.addEventListener('keydown', function(event) {
+            if (event.key === "Escape" && modal.style.display === "flex") {
+                closeModal();
+            }
+        });
+    </script>
+
+</body>
+</html>
