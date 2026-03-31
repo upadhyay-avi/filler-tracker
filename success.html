@@ -5,6 +5,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Payment Successful - Contact Details</title>
+    <script>
+        // Check if this specific session has already seen the success page
+        if (sessionStorage.getItem('payment_success_viewed')) {
+            // If they have, redirect them immediately to the home page
+            // Use replace() so the success page isn't kept in their back-button history
+            window.location.replace('https://upadhyay-avi.github.io/filler-tracker/');
+        } else {
+            // If this is their first time landing here, set the flag
+            sessionStorage.setItem('payment_success_viewed', 'true');
+        }
+    </script>
     <link rel="icon" type="image/svg" href="favicon.svg">
     <style>
         /* This line was missing! It imports the correct font */
@@ -109,7 +120,7 @@
             transactionId = 'txn_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
 
             // Fire the Purchase event WITH the unique eventID
-            fbq('track', 'Purchase', {}, { eventID: transactionId });
+            fbq('track', 'Purchase', {value: 99.00, currency: 'INR'}, { eventID: transactionId });
 
             // Save the ID so it doesn't fire again on refresh
             sessionStorage.setItem('purchase_event_id', transactionId);
