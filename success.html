@@ -100,7 +100,20 @@
 
 <body>
     <script>
-        fbq('track', 'Purchase');
+        // Check if we already fired a purchase event for this specific visit
+        let transactionId = sessionStorage.getItem('purchase_event_id');
+
+        // If no ID exists, create one, fire the pixel, and save the ID
+        if (!transactionId) {
+            // Generate a random ID (e.g., "txn_1678901234567_abc123")
+            transactionId = 'txn_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+
+            // Fire the Purchase event WITH the unique eventID
+            fbq('track', 'Purchase', {}, { eventID: transactionId });
+
+            // Save the ID so it doesn't fire again on refresh
+            sessionStorage.setItem('purchase_event_id', transactionId);
+        }
     </script>
 
     <div class="card">
