@@ -391,67 +391,112 @@
             background: white;
         }
 
-        .pricing-card {
-            background: var(--bg-color);
-            max-width: 500px;
-            margin: 0 auto;
-            padding: 50px;
-            border-radius: 24px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-            border: 1px solid #e2e8f0;
-        }
-
-        .price {
-            font-size: 56px;
-            font-weight: 800;
-            color: var(--text-main);
-            margin-bottom: 10px;
-        }
-
-        .price span {
-            font-size: 20px;
-            color: var(--text-muted);
-            font-weight: 500;
-        }
-
-        .pricing-features {
-            list-style: none;
-            margin: 30px 0;
-            text-align: left;
-        }
-
+        /* 1. The Wrapper: Keeps them centered and prevents them from spreading too far */
         .pricing-cards-wrapper {
             display: flex;
             justify-content: center;
             align-items: stretch;
             /* Makes both cards the same height */
-            gap: 30px;
-            /* Space between the cards */
-            margin-top: 30px;
+            gap: 40px;
+            /* Consistent spacing between cards */
+            margin-top: 40px;
             flex-wrap: wrap;
-            /* Ensures they stack on small mobile screens */
-            width: 50%;
+            max-width: 900px;
+            /* Prevents them from flying to the edges of the screen */
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        /* Optional: Ensure the cards don't get too wide on large screens */
+        /* 2. The Card: Uses flex-direction to manage internal spacing */
         .pricing-card {
-            flex: 1;
-            max-width: 350px;
+            background: white;
+            width: 100%;
+            max-width: 380px;
+            /* Slightly wider to fit the text nicely */
+            border-radius: 16px;
+            padding: 40px 30px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+            /* This is the magic for button alignment */
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Optional Highlight for the Demo Card */
+        .pricing-card.recommended {
+            border: 2px solid #4f46e5;
+            position: relative;
+        }
+
+        /* 3. Typography consistency */
+        .pricing-card .price {
+            font-size: 42px;
+            font-weight: 800;
+            color: #0f172a;
+            text-align: center;
+            line-height: 1;
+        }
+
+        .pricing-card .plan-name {
+            text-align: center;
+            color: #64748b;
+            font-size: 16px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 10px;
+            margin-bottom: 30px;
+        }
+
+        /* 4. Feature List Alignment */
+        .pricing-features {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            margin-bottom: 30px;
         }
 
         .pricing-features li {
-            padding: 10px 0;
-            border-bottom: 1px solid #e2e8f0;
-            color: var(--text-muted);
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            padding-left: 28px;
+            position: relative;
+            margin-bottom: 16px;
+            color: #475569;
+            font-size: 15px;
+            line-height: 1.5;
         }
 
-        .pricing-features li:before {
-            content: '✓';
-            color: var(--brand-accent);
-            font-weight: bold;
+        /* 5. Pushing the Button to the bottom */
+        .pricing-card .btn-checkout {
+            margin-top: auto;
+            /* Pushes the button to the bottom of the flex container */
+            width: 100%;
+            display: block;
+            text-align: center;
+            /* (Keep your existing background/padding styles for the button here) */
+        }
+
+        .pricing-card .demo-btn {
+            background: #f8fafc;
+            color: #4f46e5;
+            border: 2px solid #4f46e5;
+        }
+
+        .pricing-card .demo-btn:hover {
+            background: #e0e7ff;
+        }
+
+        .pricing-card .secure-text {
+            font-size: 12px;
+            color: #94a3b8;
+            text-align: center;
+            margin-top: 15px;
+            margin-bottom: 0;
         }
 
         .btn-checkout {
@@ -720,35 +765,35 @@
             like it and I will build something better for you.</p>
 
         <div class="pricing-cards-wrapper">
+
             <div class="pricing-card">
                 <div class="price">₹9/-</div>
-
+                <p class="plan-name">Discovery Call</p>
                 <ul class="pricing-features">
-                    <li>A small fee for actually intrested people</li>
+                    <li>A small fee for actually interested people</li>
                     <li>Direct access to my personal email & WhatsApp</li>
                     <li>1-on-1 discovery call to discuss your workflow</li>
                     <li>Custom quote for adapting this tool to your PDFs</li>
                 </ul>
-
-                <a href="https://rzp.io/rzp/CqUNHcQk" class="btn-checkout">
-                    Pay Fee & Schedule a Call
+                <a href="https://rzp.io/rzp/CqUNHcQK" class="btn-checkout">
+                    Schedule a Call
                 </a>
-                <p style="font-size: 12px; color: #94a3b8; margin-top: 15px;">Secure payment powered by Razorpay.</p>
+                <p class="secure-text">Secure payment powered by Razorpay.</p>
             </div>
 
-            <div class="pricing-card">
-                <div class="price">Free Live Demo</div>
-
+            <div class="pricing-card recommended">
+                <div class="price">Free</div>
+                <p class="plan-name">Live Demo</p>
                 <ul class="pricing-features">
-                    <li>Try out the application now</li>
-                    <li>Fully customizable</li>
-                    <li>Can be intedraged into your current workflow</li>
-                    <li>Generate PDFs, images or douments.</li>
+                    <li>Try out the application right now</li>
+                    <li>Fully customizable to your needs</li>
+                    <li>Can be integrated into your current workflow</li>
+                    <li>Generate PDFs, images, or documents</li>
                 </ul>
-
-                <a href="https://upadhyay-avi.github.io/filler-tracker-demo/" class="btn-checkout">
-                    Live Demo
+                <a href="https://upadhyay-avi.github.io/filler-tracker-demo/" class="btn-checkout demo-btn">
+                    Try Demo Now
                 </a>
+                <p class="secure-text">No payment required.</p>
             </div>
 
         </div>
