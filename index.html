@@ -420,6 +420,25 @@
             text-align: left;
         }
 
+        .pricing-cards-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: stretch;
+            /* Makes both cards the same height */
+            gap: 30px;
+            /* Space between the cards */
+            margin-top: 30px;
+            flex-wrap: wrap;
+            /* Ensures they stack on small mobile screens */
+            width: 100%;
+        }
+
+        /* Optional: Ensure the cards don't get too wide on large screens */
+        .pricing-card {
+            flex: 1;
+            max-width: 350px;
+        }
+
         .pricing-features li {
             padding: 10px 0;
             border-bottom: 1px solid #e2e8f0;
